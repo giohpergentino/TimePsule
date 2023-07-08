@@ -1,0 +1,33 @@
+import { StyleSheet } from "react-native";
+
+const estiloLista = StyleSheet.create({
+    ContainerPai:{
+        flexDirection:'row',
+        padding:5,
+        marginTop:10,
+        marginBottom:5,
+    },
+    DadosCont:{
+        justifyContent:"center",
+    },
+    FotoContat:{
+        height:50,
+        width:50,  
+        marginRight:15,
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:'gray',
+        borderRadius:'50%',
+    },
+    nome:{
+        fontSize: 16,
+        fontWeight: 500,
+        marginBottom:3,
+        color:'white',
+    },
+    numero:{
+        fontSize:12,
+        color:'white',
+    }
+})
+export default estiloLista
