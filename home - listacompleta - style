@@ -1,0 +1,8 @@
+import { StyleSheet } from "react-native";
+
+const estiloListaC = StyleSheet.create({
+    ContainerPai:{
+        margin:20,
+    }
+})
+export default estiloListaC
