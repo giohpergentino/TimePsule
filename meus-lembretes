@@ -1,0 +1,103 @@
+import { StatusBar } from 'expo-status-bar';
+import { useState } from "react"
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Button, Image, FlatList } from 'react-native';
+
+export default function App() {
+  const [pessoas, setPessoas] = useState([
+    { nome: 'Dipirona', key: '00:00' },
+    { nome: 'Metformina', key: '05:00' },
+    { nome: 'Paracetamol', key: '09:30' },
+    { nome: 'Azitromicina', key: '16:00' },
+    { nome: 'Omeprazol', key: '18:30' },
+    { nome: 'Sertralina', key: '22:00' },
+    { nome: 'Losartana ', key: '23:30' },
+  ])
+
+  const apertarBotao = (key) => {
+    console.log(key)
+    const pessoasFiltradas = pessoas.filter((item) => item.key != key)
+    setPessoas(pessoasFiltradas)
+    console.log(`filtradas: ${pessoasFiltradas}`)
+  }
+
+
+  return (
+    <View style={styles.container}>
+      <SafeAreaView >
+        <View style={styles.header}>
+          <View style={styles.imageheader}>
+            <Image
+              source={require('../MeusLembretes/assets/TimePsule.png')}
+              style={{ width: 70, height: 70 }}
+              resizeMode="contain"
+            />
+          </View>
+
+          <Text style={styles.textologo}>Meus Lembretes</Text>
+        </View>
+
+      </SafeAreaView>
+
+      <FlatList
+        numColumns={1}
+        keyExtractor={(item) => item.key}
+        data={pessoas}
+        renderItem={({ item }) => (
+          <TouchableOpacity activeOpacity={0.8}
+            onPress={() => apertarBotao(item.key)}
+          >
+            <Text style={styles.item}>{item.nome} - {item.key}</Text>
+          </TouchableOpacity>
+        )}
+      />
+
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#E0FFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  botao: {
+    backgroundColor: '#008080',
+    borderRadius: 10,
+    paddingLeft: 60,
+    paddingRight: 60,
+    padding: 10,
+  },
+  header: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingRight: 50,
+    paddingLeft: 20,
+    borderBottomWidth: 3,
+    borderBottomColor: '#008080'
+  },
+  imageheader: {
+    paddingRight: 5,
+  },
+  textologo: {
+    fontSize: 35,
+    color: '#008080',
+  },
+  item: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+    padding: 30,
+    marginLeft: '15%',
+    marginRight: '50%',
+    color: "white",
+    backgroundColor: '#008080',
+    fontSize: 20,
+    borderWidth: 1,
+    width: '50%',
+  },
+});
