@@ -1,0 +1,392 @@
+import { Alert, View, Text, Button, StyleSheet, TextInput, Image, FlatList, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useState } from "react"
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Calendar } from 'react-native-calendars';
+import ListaCompleta from './src/componentes/ListaCompleta/ListaContCompleta';
+
+
+function HomeScreen({ navigation }) {
+  const [mes, setMes] = useState(true) 
+  
+  return (
+    <View style={styles.container}>
+      <View style={styles.botaoadaptado}>
+      <Button
+        title='Anotações'
+        onPress={() => navigation.navigate('Anotações')}
+        color='#008080'
+      />
+       <View style={styles.botaoadaptado}>
+      <Button
+        title='Receita Médica'
+        onPress={() => navigation.navigate('Receita Médica')}
+        color='#008080'
+      />
+      </View>
+      <View style={styles.botaoadaptado}></View>
+      <Button
+        title='Histórico'
+        onPress={() => navigation.navigate('Histórico')}
+        color='#008080'
+      />
+      </View>
+      <View style={styles.botaoadaptado}>
+      <Button
+        title='Meus Lembretes'
+        onPress={() => navigation.navigate('Meus Lembretes')}
+        color='#008080'
+      />
+      <Button
+        title='Tratamento'
+        onPress={() => navigation.navigate('Tratamento')}
+        color='#008080'
+      />
+    </View>
+      <StatusBar style="auto" />
+      <Calendar style={styles.calendar}
+        initiaDate={'2023-04-01'}
+        minDate={'2023-01-01'}
+        maxDate={'2023-12-31'}
+        hideExtraDays={true}
+
+        markedDates={{
+        '2023-06-12':{marked: true, dotColor: 'red', selected: true, selectedColor: '#008080'},
+        '2023-06-14':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-06-16':{marked: true, dotColor: 'red', selected: true, selectedColor: '#008080'},
+        '2023-06-19':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-06-21':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-06-23':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-06-26':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-06-28':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-06-30':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-07-12':{marked: true, dotColor: 'red', selected: true, selectedColor: '#008080'},
+        '2023-07-14':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-07-16':{marked: true, dotColor: 'red', selected: true, selectedColor: '#008080'},
+        '2023-07-19':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-07-21':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-07-23':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-07-26':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-07-28':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-07-30':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-08-12':{marked: true, dotColor: 'red', selected: true, selectedColor: '#008080'},
+        '2023-08-14':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-08-16':{marked: true, dotColor: 'red', selected: true, selectedColor: '#008080'},
+        '2023-08-19':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-08-21':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-08-23':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-08-26':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+        '2023-08-28':{marked: true, dotColor: 'yellow', selected: true, selectedColor: '#008080'},
+        '2023-08-30':{marked: true, dotColor: 'orange', selected: true, selectedColor: '#008080'},
+      }}
+      />
+    <View style={styles.botao}>
+      <Button
+        title='Adicionar Lembrete'
+        onPress={() => navigation.navigate('Adicionar Lembrete')}
+        color='#fff'
+      />
+    </View>
+    </View>
+  );
+}
+function AdicionarLembrete() {
+  return (
+    <View style={styles.adicionarlembrete}>
+        <Image style={styles.logo} source={require('../TelaPrincipal/assets/TimePsule.png')}/>
+      <View style={styles.box}>
+      <TextInput
+      style={styles.input}
+      placeholder="Nome do Remédio"
+      />
+</View>
+    <View style={styles.box}>
+      <TextInput
+      style={styles.input}
+      placeholder="Horário"
+      keyboardType="numeric"
+      />
+    </View>
+    <View style={styles.box}>
+      <TextInput
+      style={styles.input}
+      placeholder="Frenquência"
+      keyboardType="numeric"
+      />
+    </View>
+    <View style={styles.botaoativar}>
+    <Button 
+      title="Ativar Lembrete"
+      color='#fff'
+      onPress={() => Alert.alert('Lembrete adicionado com sucesso!')}
+      />
+    </View>
+      <StatusBar style="auto" />
+    </View>
+    
+  );
+}
+function Anotações() {
+  const [pessoas, setPessoas] = useState([
+    {nome: 'Comprar dipirona', key: 1},
+    {nome: 'Organizar caixa', key: 2},
+    {nome: 'Trocar medicação', key: 3},
+    {nome: 'Marcar médico', key: 4},
+    {nome: 'Ir na farmácia', key: 5},
+    {nome: 'Comprar balança', key: 6},
+    {nome: 'Comprar Dorflex', key: 7},
+    {nome: 'Comprar Omeprazol', key: 8},
+    {nome: 'Comprar Xantinon', key: 9},
+    {nome: 'Comprar Benegrip', key: 10},
+  ]);
+  
+    const apertarBotao = (key) =>{
+      console.log(key)
+      const pessoasFiltradas = pessoas.filter((item) => item.key != key)
+      setPessoas(pessoasFiltradas)
+  
+      console.log(`filtradas: ${pessoasFiltradas}`)
+    }
+  return (
+    <View style={styles.adicionarlembrete}>
+ <FlatList
+      data={pessoas}
+      keyExtractor={(item) => item.key}
+      renderItem={({ item }) => (
+        <TouchableOpacity activeOpacity={0.8}
+          onPress={() => apertarBotao(item.key)}
+          >
+          <Text style={styles.item}>{item.nome}</Text>
+        </TouchableOpacity>
+      )}
+      />
+      <StatusBar style="auto" />
+    </View>
+    
+  );
+}
+function ReceitaMédica() {
+  const [pessoas, setPessoas] = useState([
+    {nome: 'Pressão arterial', key: 1},
+    {nome: 'Antidepressivos', key: 2},
+    {nome: 'Antipsicóticos', key: 3},
+    {nome: 'Anticoncepcionais', key: 4},
+    {nome: 'Colesterol', key: 5},
+    {nome: 'Controle da dor forte', key: 6},
+    {nome: 'Distúrbios do sono', key: 7},
+  ]);
+  
+    const apertarBotao = (key) =>{
+      console.log(key)
+      const pessoasFiltradas = pessoas.filter((item) => item.key != key)
+      setPessoas(pessoasFiltradas)
+  
+      console.log(`filtradas: ${pessoasFiltradas}`)
+    }
+  return (
+    <View style={styles.adicionarlembrete}>
+ <FlatList
+      data={pessoas}
+      keyExtractor={(item) => item.key}
+      renderItem={({ item }) => (
+        <TouchableOpacity activeOpacity={0.8}
+          onPress={() => apertarBotao(item.key)}
+          >
+          <Text style={styles.item}>{item.nome}</Text>
+        </TouchableOpacity>
+      )}
+      />
+      <StatusBar style="auto" />
+    </View>
+    
+  );
+}
+function Histórico() {
+  const [pessoas, setPessoas] = useState([
+    {nome: 'Hepatite', key: 1},
+    {nome: 'Pressão alta', key: 2},
+    {nome: 'Câncer', key: 3},
+    {nome: 'Pedra nos rins', key: 4},
+  ]);
+  
+    const apertarBotao = (key) =>{
+      console.log(key)
+      const pessoasFiltradas = pessoas.filter((item) => item.key != key)
+      setPessoas(pessoasFiltradas)
+  
+      console.log(`filtradas: ${pessoasFiltradas}`)
+    }
+  return (
+    <View style={styles.adicionarlembrete}>
+ <FlatList
+      data={pessoas}
+      keyExtractor={(item) => item.key}
+      renderItem={({ item }) => (
+        <TouchableOpacity activeOpacity={0.8}
+          onPress={() => apertarBotao(item.key)}
+          >
+          <Text style={styles.item}>{item.nome}</Text>
+        </TouchableOpacity>
+      )}
+      />
+      <StatusBar style="auto" />
+    </View>
+    
+  );
+}
+function MeusLembretes() {
+  const data = [
+    { key:1, nome:'Domperidona', numero:'09:00'},
+    { key:2, nome:'Zero Lac', numero:'11:10'},
+    { key:3, nome:'Dipirona', numero:'15:30'},
+    { key:4, nome:'Dorflex', numero:'17:45'},
+    { key:5, nome:'Omeprazol', numero:'19:00'},
+    { key:6, nome:'Xantinon', numero:'21:00'},
+    { key:7, nome:'Benegrip', numero:'23:50'},
+  ]
+  return (
+    <View style={styles.adicionarlembrete}>
+      <View style={styles.container2}>
+      <ListaCompleta data={data}/>
+    </View>
+    </View>
+  );
+}
+function Tratamento() {
+  const [pessoas, setPessoas] = useState([
+    {nome: 'Rinite', key: 1},
+    {nome: 'Asma', key: 2},
+    {nome: 'Depressão', key: 3},
+    {nome: 'Ansiedade', key: 4},
+    {nome: 'Diabete', key: 5},
+    {nome: 'Pressão alta', key: 6},
+  ]);
+  
+    const apertarBotao = (key) =>{
+      console.log(key)
+      const pessoasFiltradas = pessoas.filter((item) => item.key != key)
+      setPessoas(pessoasFiltradas)
+  
+      console.log(`filtradas: ${pessoasFiltradas}`)
+    }
+  return (
+    <View style={styles.adicionarlembrete}>
+ <FlatList
+      data={pessoas}
+      keyExtractor={(item) => item.key}
+      renderItem={({ item }) => (
+        <TouchableOpacity activeOpacity={0.8}
+          onPress={() => apertarBotao(item.key)}
+          >
+          <Text style={styles.item}>{item.nome}</Text>
+        </TouchableOpacity>
+      )}
+      />
+      <StatusBar style="auto" />
+    </View>
+    
+  );
+}
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='TimePsule'>
+        <Stack.Screen name='TimePsule' component={HomeScreen} />
+        <Stack.Screen name='Adicionar Lembrete' component={AdicionarLembrete} />
+        <Stack.Screen name='Anotações' component={Anotações} />
+        <Stack.Screen name='Receita Médica' component={ReceitaMédica} />
+        <Stack.Screen name='Histórico' component={Histórico} />
+        <Stack.Screen name='Meus Lembretes' component={MeusLembretes} />
+        <Stack.Screen name='Tratamento' component={Tratamento} />
+      </Stack.Navigator>
+    </NavigationContainer>
+      );
+    }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#E0FFFF',
+    justifyContent: 'center',
+  },
+  caixalogo: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  logo: {
+    width: 250,
+    height: 250,
+  },
+  calendar: {
+    elevation: 4,
+    borderRadius: 10,
+    margin: 20,
+    marginBottom: 80,
+  },
+  adicionarlembrete: {
+    flex: 1,
+    backgroundColor: '#E0FFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  botao: {
+  marginTop: 40,
+  backgroundColor: '#008080',
+  borderRadius: 10,
+  paddingLeft: 60,
+  paddingRight: 60,
+  padding: 10,
+  },
+  botaoadaptado:{
+    marginBottom:10,
+    flexDirection:'row',
+    justifyContent: 'space-around',
+  },
+  botaoativar:{
+    backgroundColor:'#008080',
+    borderRadius: 10,
+    paddingLeft: 50,
+    paddingRight: 50,
+  },
+  text:{
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  input:{
+    padding: 8,
+    width: '80%',
+  },
+  box:{
+    borderWidth: 1,
+    marginBottom: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 8,
+    borderRadius: 10,
+  },
+  container2: {
+    flex: 1,
+    backgroundColor: '#008080',
+  },
+  item:{
+    flex: 1,
+    marginTop: 10,
+    padding: 10,
+    //marginLeft: 8,
+    //marginRight: 8,
+    backgroundColor: 'pink',
+    fontSize: 25,
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '98%',
+    borderRadius: 10,
+    paddingLeft: 70,
+    paddingRight: 70,
+  },
+});
+export default App;
