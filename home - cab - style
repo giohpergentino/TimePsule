@@ -1,0 +1,45 @@
+import { StyleSheet } from "react-native";
+
+const estilo = StyleSheet.create({
+    ContPai:{
+        flex:1,
+        marginTop:20,
+        marginBottom:20,
+        marginLeft:20,
+    },
+    TitAg:{
+        fontSize:38,
+        fontWeight:700,
+        color:'white',
+    },
+    ContainerVoltar:{
+        flexDirection:"row",
+        alignItems:'center',
+    },
+    TextoVoltar:{
+        color:'#0d55ba',
+        fontSize: 19,
+        fontWeight: 450,
+    },
+    SimbExpand:{
+        marginLeft:220,
+    },
+    ContainerBusca:{
+        flexDirection:"row",
+        backgroundColor:'#1a1a1a',
+        width:'90%',
+        borderRadius:10,
+        alignItems:'center',
+        marginTop: 5,
+    },
+    SimboloBuscar:{
+        marginLeft: 10,
+    },
+    TextoBuscar:{
+        color:'gray',
+        fontWeight: 500,
+        fontSize: 18,
+        marginLeft: 6,
+    }
+})
+export default estilo
