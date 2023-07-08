@@ -1,0 +1,25 @@
+import {Text ,View, TextInput} from 'react-native'
+import estilo from './style';
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons'; 
+
+
+export default function Cab(){
+    return(
+        <View style={estilo.ContPai}>
+
+            <View style={estilo.ContainerVoltar}>
+                <View style={estilo.SimbExpand}>
+                </View>
+            </View>  
+            <Text style={estilo.TitAg}>Lembretes</Text>
+
+            <View style={estilo.ContainerBusca}>
+            <Feather style={estilo.SimboloBuscar} name="search" size={18} color="gray" />
+                <TextInput style={estilo.TextoBuscar}
+                placeholder='Buscar'/>
+            </View>
+        </View>
+
+    );
+}
