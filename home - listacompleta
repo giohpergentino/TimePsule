@@ -1,0 +1,17 @@
+import { FlatList} from "react-native";
+import { ItemLista } from "../ListaContato/ListaContItem";
+import estiloListaC from "./style";
+import Cab from "../Cab/Cab";
+import { SeparatorItem } from "../Separador/separador";
+
+export default function ListaCompleta(props){
+    return(
+        <FlatList 
+        ListHeaderComponent={Cab}
+        ItemSeparatorComponent={SeparatorItem}
+        data={props.data}
+        renderItem={({item}) =>(<ItemLista nome={item.nome} numero={item.numero}/>)}
+        keyExtractor={item=>item.chave}
+        style={estiloListaC.ContainerPai}/>
+    );
+}
