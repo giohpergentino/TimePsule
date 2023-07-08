@@ -1,0 +1,17 @@
+import { View , Text} from "react-native";
+import estiloLista from "./style";
+
+export function ItemLista(props){
+    return(
+        <View style={estiloLista.ContainerPai}>
+            <View style={estiloLista.FotoContat}>
+                <Text>{props.nome.charAt(0)}</Text>
+            </View>
+            
+            <View style={estiloLista.DadosCont}>
+                <Text style={estiloLista.nome}> {props.nome}</Text>
+                <Text style={estiloLista.numero}> {props.numero}</Text>
+            </View>
+        </View>
+    );
+}
